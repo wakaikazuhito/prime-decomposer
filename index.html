@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>素因数分解アプリ</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>素因数分解</h1>
+      <p class="subtitle">自然数を入力すると、素因数分解の結果を表示します。</p>
+
+      <form id="factor-form" class="card">
+        <label for="number-input">整数を入力</label>
+        <div class="input-row">
+          <input
+            id="number-input"
+            type="text"
+            inputmode="numeric"
+            placeholder="例: 9007199254740993"
+            aria-label="素因数分解する整数"
+            required
+          />
+          <button type="submit">分解</button>
+        </div>
+        <p id="error-message" class="error" aria-live="polite"></p>
+      </form>
+
+      <section id="result" class="result card" aria-live="polite">
+        <h2>結果</h2>
+        <p id="result-text">まだ計算していません</p>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
