@@ -1,6 +1,7 @@
 const form = document.getElementById('factor-form');
 const numberInput = document.getElementById('number-input');
 const resultText = document.getElementById('result-text');
+const elapsedTimeText = document.getElementById('elapsed-time-text');
 const errorMessage = document.getElementById('error-message');
 
 function parseInteger(value) {
@@ -69,6 +70,7 @@ form.addEventListener('submit', (event) => {
   if (!value.trim()) {
     errorMessage.textContent = '整数を入力してください。';
     resultText.textContent = 'まだ計算していません';
+    elapsedTimeText.textContent = '計算時間: 0.00ms';
     return;
   }
 
@@ -76,12 +78,17 @@ form.addEventListener('submit', (event) => {
   if (parsed === null || parsed < 1n) {
     errorMessage.textContent = '1以上の整数を入力してください。';
     resultText.textContent = 'まだ計算していません';
+    elapsedTimeText.textContent = '計算時間: 0.00ms';
     return;
   }
 
   errorMessage.textContent = '';
 
+  const startTime = performance.now();
   const factors = primeFactorization(parsed);
+  const elapsedMs = performance.now() - startTime;
   const output = formatFactors(factors);
+
   resultText.textContent = output;
+  elapsedTimeText.textContent = `計算時間: ${elapsedMs.toFixed(2)}ms`;
 });
